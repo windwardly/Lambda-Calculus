@@ -1,0 +1,6 @@
+import * from ./bool.lambda;
+import { T } from ./combinator.lambda;
+
+pairP = \1.\2.\f.f 1 2;
+fstP = T trueB;
+sndP = T falseB;

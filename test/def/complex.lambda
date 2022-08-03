@@ -1,0 +1,20 @@
+import * from ./rat.lambda;
+import * from ../def/pair.lambda;
+
+# Functions to operate on rational complex numbers
+# +rC - -rC     +iC - -iC
+# —————————  +  —————————
+#    /rC           /iC   
+
+RtoC = \real.pairP real 0R;
+iRtoC = \imag.pairP 0R imag;
+RRtoC = \real.\imag.pairP real imag;
+
+0C = RRtoC 0R 0R;
+1C = RtoC 1R;
+-1C = RtoC -1R;
+iC = iRtoC 1R;
+-iC = iRtoC -1R;
+
+realC = fstP;
+imagC = sndP;

@@ -1,0 +1,41 @@
+import { B1, Y } from ../def/combinator.lambda;
+import * from ../def/church.lambda;
+import * from ../def/bool.lambda;
+import * from ../def/pair.lambda;
+
+plusN = \m.\n.\f.\x.m f (n f x);
+multN = \m.\n.\f.m (n f);
+expN = \m.\n.n m;
+
+predN = \n.\f.\x.n (\g.\h.h (g f)) (\u.x) (\u.u);
+predN_ = \n.
+        fstP (
+            n
+            (\p.pairP (sndP p) (succN (sndP p)))
+            (pairP 0N 0N)
+        );
+subN = \m.\n.n predN m;
+
+isZeroN = \n.n (\_.falseB) trueB;
+
+facN = Y
+        (
+            \self.
+            \n.isZeroN n
+            1N
+            [multN n (self (predN n))]
+        );
+
+divModN = \num.\den.
+    Y (
+        \self.\div.\n.
+            (\new_n.
+                isZeroN new_n
+                [pairP div (predN n)]
+                [self (succN div) new_n]
+            )
+            ( subN n den )
+    )
+    0N (succN num);
+divN = B1 fstP divModN;
+modN = B1 sndP divModN;

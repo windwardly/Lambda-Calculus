@@ -1,0 +1,3 @@
+import { T, F } from ../def/combinator.lambda;
+
+swapP = T F;

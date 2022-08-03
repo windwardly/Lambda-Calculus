@@ -1,0 +1,10 @@
+import { Y, C, B1, V, B, T, I } from ./def/combinator.lambda;
+
+# doubleton = \f.\s.chain nil $ (cons s) $ (cons f) _;
+# PtoL = T doubleton;
+
+abc_to_a$pair$bc = C B1 V;
+
+# NVLPtoNL = B (mapL NVLtoN) PtoL; # ???????
+
+# pairNVLtoListN = \f.\s.NVLPtoNL (pair f s);

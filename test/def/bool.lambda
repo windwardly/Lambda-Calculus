@@ -1,0 +1,3 @@
+# simple encoding for booleans
+trueB = \t.\f.t;
+falseB = \t.\f.f;

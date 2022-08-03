@@ -1,0 +1,79 @@
+decrypt ./decrypt.js;
+
+import * from ./def/bool.lambda;
+import * from ./def/church.lambda;
+import * from ./def/combinator.lambda;
+import * from ./def/complex.lambda;
+import * from ./def/int.lambda;
+import * from ./def/list.lambda;
+import * from ./def/nat_list.lambda;
+import * from ./def/nat_void_list.lambda;
+import * from ./def/pair.lambda;
+import * from ./def/rat.lambda;
+import * from ./def/void_list.lambda;
+
+import * from ./func/bool.lambda;
+import * from ./func/church.lambda;
+import * from ./func/complex.lambda;
+import * from ./func/int.lambda;
+import * from ./func/list.lambda;
+import * from ./func/nat_list.lambda;
+import * from ./func/nat_void_list.lambda;
+import * from ./func/pair.lambda;
+import * from ./func/rat.lambda;
+
+andB trueB falseB @unbool;
+notB falseB @unbool;
+
+@hr;
+succN 9N @unchurch;
+predN 2N @unchurch;
+predN 1N @unchurch;
+predN 0N @unchurch;
+predN_ 2N @unchurch;
+predN_ 1N @unchurch;
+predN_ 0N @unchurch;
+
+@br;
+plusN 8N 7N @unchurch;
+multN 8N 7N @unchurch;
+expN 3N 4N @unchurch;
+subN 7N 4N @unchurch;
+subN 7N 7N @unchurch;
+subN 4N 7N @unchurch;
+
+@br;
+isZeroN 0N @unbool;
+isZeroN 1N @unbool;
+
+@br;
+facN 6N @unchurch;
+facN 0N @unchurch;
+divModN 7N 2N @unpair(unchurch);
+divModN 8N 2N @unpair(unchurch);
+divModN 7N 8N @unpair(unchurch);
+
+@hr;
+swapP (pairP 1N 2N) @unpair(unchurch);
+
+@hr;
+myList = makeListL 5N 1N 2N 3N 4N 5N;
+myList @unlist(unchurch);
+makeListL 0N @unlist();
+reverseL myList @unlist(unchurch);
+reverseL nilL @unlist();
+5*myList = mapL (multN 5N) myList;
+5*myList @unlist(unchurch);
+map_L (Y I) myList @id;
+longList = concatL myList 5*myList;
+longList @unlist(unchurch);
+concatL nilL nilL @unlist();
+filterL (B isZeroN (C modN 2N)) longList @unlist(unchurch);
+filterL (B notB (B isZeroN (C modN 2N))) longList @unlist(unchurch);
+reduceRightL plusN longList 0N @unchurch;
+reduceRightL falseB longList 0N @unchurch;
+reduceL falseB longList 0N @unchurch;
+reduceL plusN longList 0N @unchurch;
+
+@hr;
+# plusZ

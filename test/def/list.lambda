@@ -1,0 +1,9 @@
+import * from ./bool.lambda;
+import * from ./pair.lambda;
+
+nilL = \_.trueB;
+consL = pairP;
+isNilL = \l.l (\_.\_.falseB);
+headL = \l.isNilL l nilL (fstP l);
+tailL = \l.isNilL l nilL (sndP l);
+getElemL = \n.\l.headL (n tailL l);

@@ -1,0 +1,18 @@
+import * from ./church.lambda;
+import * from ./list.lambda;
+
+0NL = consL 0N nilL;
+succNL = \l.consL (succN (headL l)) l;
+
+1NL = succNL 0NL;
+2NL = succNL 1NL;
+3NL = succNL 2NL;
+4NL = succNL 3NL;
+5NL = succNL 4NL;
+6NL = succNL 5NL;
+7NL = succNL 6NL;
+8NL = succNL 7NL;
+9NL = succNL 8NL;
+
+NtoNL = \n.n succNL (consL 0N nil);
+NLtoN = \nl.headL nl;

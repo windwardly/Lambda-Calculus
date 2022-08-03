@@ -1,0 +1,33 @@
+import * from ./church.lambda;
+import * from ./pair.lambda;
+import { T, F } from ./combinator.lambda;
+
++NtoZ = \+N.pairP +N 0N;
+-NtoZ = \-N.pairP 0N -N;
+NNtoZ = \+N.\-N.pairP +N -N;
+
+-9Z = -NtoZ 9N;
+-8Z = -NtoZ 8N;
+-7Z = -NtoZ 7N;
+-6Z = -NtoZ 6N;
+-5Z = -NtoZ 5N;
+-4Z = -NtoZ 4N;
+-3Z = -NtoZ 3N;
+-2Z = -NtoZ 2N;
+-1Z = -NtoZ 1N;
+
+0Z = pairP 0N 0N;
+
++1Z = +NtoZ 1N;
++2Z = +NtoZ 2N;
++3Z = +NtoZ 3N;
++4Z = +NtoZ 4N;
++5Z = +NtoZ 5N;
++6Z = +NtoZ 6N;
++7Z = +NtoZ 7N;
++8Z = +NtoZ 8N;
++9Z = +NtoZ 9N;
+
++Z = fstP;
+-Z = sndP;
+flipZ = T F;

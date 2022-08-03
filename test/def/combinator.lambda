@@ -1,0 +1,36 @@
+B = \a.\b.\c.a (b c);
+B1 = \a.\b.\c.\d.a (b c d);
+B2 = \a.\b.\c.\d.\e.a (b c d e);
+B3 = \a.\b.\c.\d.a (b (c d));
+C = \a.\b.\c.a c b;
+D = \a.\b.\c.\d.a b (c d);
+D1 = \a.\b.\c.\d.\e.a b c (d e);
+D2 = \a.\b.\c.\d.\e.a (b c) (d e);
+E = \a.\b.\c.\d.\e.a b (c d e);
+Ê = \a.\b.\c.\d.\e.\f.\g.a (b c d) (e f g);
+F = \a.\b.\c.c b a;
+G = \a.\b.\c.\d.a d (b c);
+H = \a.\c.\b.a b c b;
+I = \x.x;
+J = \a.\b.\c.\d.a b (a d c);
+K = \x.\y.x;
+L = \a.\b.a (b b);
+M = \a.a a;
+M2 = \a.\b.a b (a b);
+O = \a.\b.b (a b);
+Q = \a.\b.\c.b (a c);
+Q1 = \a.\b.\c.a (c b);
+Q2 = \a.\b.\c.b (c a);
+Q3 = \a.\b.\c.c (a b);
+Q4 = \a.\b.\c.c (b a);
+R = \a.\b.\c.b c a;
+S = \a.\b.\c.a c (b c);
+T = \a.\b.b a;
+U = \a.\b.b (a a b);
+V = \a.\b.\c.c a b;
+W = \a.\b.a b b;
+W1 = \a.\b.b a a;
+Y = \f.
+    (\x.f [x x])
+    (\x.f [x x]);
+Z = Y;

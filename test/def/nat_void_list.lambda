@@ -1,0 +1,16 @@
+import * from ./void_list.lambda;
+
+0NVL = nilVL;
+
+succNVL = consVL;
+predNVL = tailVL;
+
+1NVL = succNVL 0NVL;
+2NVL = succNVL 1NVL;
+3NVL = succNVL 2NVL;
+4NVL = succNVL 3NVL;
+5NVL = succNVL 4NVL;
+6NVL = succNVL 5NVL;
+7NVL = succNVL 6NVL;
+8NVL = succNVL 7NVL;
+9NVL = succNVL 8NVL;

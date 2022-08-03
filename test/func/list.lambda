@@ -1,0 +1,130 @@
+import * from ../def/list.lambda;
+import { D, Q, Y } from ../def/combinator.lambda;
+import { predN, isZeroN } from ./church.lambda;
+
+makeListL = \n.isZeroN n nilL 
+(
+    Y (
+        \self.
+        \l.
+        \n.
+        \v.
+        isZeroN n
+        [consL v l]
+        [self (consL v l) (predN n)]
+    ) nilL (predN n)
+);
+mapL = \f.
+        Y
+        (
+            \self.
+            \l1.
+            isNilL l1
+            nilL
+            (consL (f (headL l1)) [self (tailL l1)])
+        );
+map_L = \f.
+        Y
+        (
+            \self.
+            \l1.
+            isNilL l1
+            nilL
+            (consL [f (headL l1)] [self (tailL l1)])
+        );
+reverseL = Y
+(
+    \self.
+    \to.
+    \from.
+    isNilL from
+    to
+    (
+        from (
+            \h.
+            \t.
+            [self (consL h to) t]
+        )
+    )
+) (nilL);
+concatL = (
+    \l2.Y
+    (
+        \self.
+        \l1.
+        isNilL l1
+        l2
+        (
+            l1
+            (
+                \h.
+                \t.
+                (consL h [self t])
+            )
+        )
+    )
+);
+filterL = \f.Y
+(
+    \self.
+    \l.
+    isNilL l
+    nilL
+    (
+        l
+        (
+            \h.
+            \t.
+            f h
+            (consL h [self t])
+            [self t]
+        )
+    )
+);
+reduceRightL = \f.Y
+(
+    \self.
+    \l.
+    \acc.
+    isNilL l
+    acc
+    (
+        l
+        (
+            \h.
+            \t.
+            f [self t acc] h
+        )
+    )
+);
+reduceL = D Q reduceRightL reverseL;
+ifAnyL = \f.Y
+(
+    \self.
+    \l.
+    isNilL l
+    falseB
+    l
+    (
+        \h.
+        \t.
+        f h
+        trueB
+        [self t]
+    )
+);
+ifEveryL = \f.Y
+(
+    \self.
+    \l.
+    isNilL l
+    trueB
+    l
+    (
+        \h.
+        \t.
+        f h
+        falseB
+        [self t]
+    )
+);

@@ -1,0 +1,12 @@
+import * from ../def/church.lambda;
+import * from ../def/int.lambda;
+
+reduceZ = \z1.NNtoZ (subN (+Z z1) (-Z z1)) (subN (-Z z1) (+Z z1));
+
+plusZ = \z1.\z2.NNtoZ (plusN (+Z z1) (+Z z2)) (plusN (-Z z1) (-Z z2));
+subZ = \z1.\z2.NNtoZ (plusN (+Z z1) (-Z z2)) (plusN (-Z z1) (+Z z2));
+multZ = \z1.
+        \z2.
+        NNtoZ
+        (plusN (multN (+Z z1) (+Z z2)) (multN (-Z z1) (-Z z2)))
+        (plusN (multN (+Z z1) (-Z z2)) (multN (-Z z1) (+Z z2)));

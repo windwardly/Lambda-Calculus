@@ -1,0 +1,12 @@
+# define numerals according to Church encoding
+0N = \f.\x.x;
+succN = \n.\f.\x.f (n f x);
+1N = succN 0N;
+2N = succN 1N;
+3N = succN 2N;
+4N = succN 3N;
+5N = succN 4N;
+6N = succN 5N;
+7N = succN 6N;
+8N = succN 7N;
+9N = succN 8N;

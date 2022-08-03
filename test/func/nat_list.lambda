@@ -1,0 +1,66 @@
+import * from ../def/nat_list.lambda;
+import * from ../def/church.lambda;
+import { Y } from ../def/combinator.lambda;
+
+# Define some functions for nat-lists;
+plusNL = \nl1.\nl2.(NLtoN nl1) succNL nl2;
+multNL = \nl1.\nl2.(NLtoN nl1) (plusNL nl2) 0NL;
+expNL = \nl1.\nl2.(NLtoN nl2) (multNL nl1) 1NL;
+
+predNL = \nl1.(\nl.isNilL nl 0NL nl) (tailL nl1); # ADD ??L
+subNL = \nl1.
+        \nl2.
+        ((NLtoN nl2) predNL nl1);
+
+isZeroNL = \nl1.isZeroN (NLtoN nl1);
+isDiviNL = \nl1.\divisor.Y (
+                        \self.
+                        \nl.
+                        (
+                            \new_nl.
+                            isNil new_nl
+                            ( falseB )
+                            [
+                                isZeroN (head new_nl)
+                                ( trueB )
+                                [self new_nl]
+                            ]
+                        )
+                        ( (head divisor) tail nl )
+                    ) nl1;
+modNL = \nl1.\divisor.Y (
+                        \self.
+                        \nl.
+                        (
+                            \new_nl.
+                            isNil new_nl
+                            ( nl )
+                            [self new_nl]
+                        )
+                        ( (NLtoN divisor) tail nl )
+                    ) nl1;
+gcfNL = Y
+        (
+            \self.
+            \nl1.
+            \nl2.
+            isZeroNL nl2
+            nl1
+            [self nl2 (modNL nl1 nl2)]
+        );
+lcmNL = \nl1.
+        \nl2.
+        (
+            \gcf.
+            Y
+            (
+                \self.
+                \counter.
+                \nl.
+                isZeroNL nl
+                counter
+                [self (succNL counter) (subNL nl gcf)]
+            )
+            0NL
+            (multNL nl1 nl2)
+        ) (gcfNL nl1 nl2);

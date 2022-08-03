@@ -1,0 +1,10 @@
+import * from ../def/bool.lambda;
+
+ifB = \c.\t.\f.c t f;
+notB = \p.p falseB trueB;
+andB = \p.\q.p q falseB;
+nandB = \p.\q.p (notB q) trueB;
+orB = \p.\q.p trueB q;
+norB = \p.\q.p falseB (notB q);
+xorB = \p.\q.p (notB q) q;
+xnorB = \p.\q.p q (notB q);

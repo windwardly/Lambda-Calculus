@@ -1,0 +1,42 @@
+import { Y } from ../def/combinator.lambda;
+
+plusNVL = \m.\n.NVLtoN n succNVL m;
+subNVL = \m.\n.NVLtoN n predNVL m;
+multNVL = \m.\n.NVLtoN n (plusNVL m) 0NVL;
+expNVL = \m.\n.NVLtoN n (multNVL m) 1NVL;
+
+NtoNVL = \n.n succNVL 0NVL;
+NVLtoN = \nvl.\f.
+    Y (
+        \self.\nvl2.nvl2
+            I
+            (\tail.\x.self tail (f x))
+    ) nvl;
+
+# NVL -> NVL -> Pair(NVL, NVL)
+# return div and mod for a ratio 
+# Increment to map 0 to underflow; Decrement back at end
+divModNVL = \num.\den.
+    Y (
+        \self.\div.\n.
+            (\new_vl.new_vl
+                [pair div (predNVL n)]
+                (\_.self (succNVL div) new_vl)
+            )
+            ( subNVL n den )
+    )
+    0NVL (succNVL num);
+
+divNVL = \n1.\n2.fst (divModNVL n1 n2);
+modNVL = \n1.\n2.snd (divModNVL n1 n2);
+
+gcfNVL = Y (\self.\n1.\n2.
+            n2
+                n1
+                (\_.self n2 (modNVL n1 n2))
+         );
+lcmNVL = \n1.\n2.multNVL n1 (divNVL n2 (gcfNVL n1 n2));  # asymetrical
+
+reduceNVL = \n1.\n2.
+    (\gcf.pair (divNVL n1 gcf) (divNVL n2 gcf))
+    (gcfNVL n1 n2);

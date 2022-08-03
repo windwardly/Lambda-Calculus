@@ -1,0 +1,6 @@
+import { I } from ./combinator.lambda;
+
+nilVL = \empty.\occupied.empty;
+consVL = \tail.\empty.\occupied.occupied tail;
+isNilVL = \vl.\t.\f.vl t (\_.f);
+tailVL = \vl.vl vl I;

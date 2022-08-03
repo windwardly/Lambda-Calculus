@@ -1,0 +1,17 @@
+import * from ./pair.lambda;
+import * from ./int.lambda;
+import { T, C } from ./combinator.lambda;
+
+ZtoR = \num.pairP num +1Z;
+ZZtoR = \num.\den.pairP num den;
+
+0R = ZZtoR 0Z 0Z;
+
+1R = ZtoR +1Z;
+-1R = ZtoR -1Z;
+
+2R = ZtoR +2Z;
+-2R = ZtoR -2Z;
+
+1/2R = ZZtoR +1Z +2Z;
+-1/2R = ZZtoR -1Z +2Z;

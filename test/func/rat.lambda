@@ -1,0 +1,37 @@
+import * from ../def/rat.lambda;
+import * from ./int.lambda;
+
+# reduceR = \r1.
+#             (
+#
+#             );
+
+plusR = \r1.
+        \r2.
+        ZZtoR
+        (
+            plusZ
+            ( multZ (NR r1) (DR r2) )
+            ( multZ (NR r2) (DR r1) )
+        )
+        ( multZ (DR r1) (DR r2) );
+multR = \r1.
+        \r2.
+        ZZtoR
+        ( multZ (NR r1) (NR r2) )
+        ( multZ (DR r1) (DR r2) );
+subR = \r1.
+        \r2.
+        ZZtoR
+        (
+            subZ
+            ( multZ (NR r1) (DR r2) )
+            ( multZ (NR r2) (DR r1) )
+        )
+        ( multZ (DR r1) (DR r2) );
+divR = \r1.
+        \r2.
+        ZZtoR
+        ( multZ (NR r1) (DR r2) )
+        ( multZ (DR r1) (NR r2) );
+

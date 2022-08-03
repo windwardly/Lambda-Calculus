@@ -1,0 +1,35 @@
+import * from ../def/complex.lambda;
+import * from ./rat.lambda;
+
+conjugateC = \c1.RRtoC (realC c1) (subR 0R (imagC c1));
+
+plusC = \c1.
+        \c2.
+        RRtoC
+        ( plusR (realC c1) (realC c2) )
+        ( plusR (imagC c1) (imagC c2) );
+subC = \c1.
+        \c2.
+        RRtoC
+        ( subR (realC c1) (realC c2) )
+        ( subR (imagC c1) (imagC c2) );
+multC = \c1.
+        \c2.
+        RRtoC
+        ( subR (multR (realC c1) (realC c2)) (multR (imagC c1) (imagC c2)) )
+        ( plusR (multR (realC c1) (imagC c2)) (multR (imagC c1) (realC c2)) );
+divC = \c1.
+        \c2.
+        (
+            \c2f.
+            (
+                \num.
+                \den.
+                RRtoC
+                (divR (realC num) den)
+                (divR (imagC num) den)
+            )
+            (multC c1 c2f)
+            (realC (multC c2 c2f))
+        )
+        (conjugateC c2);
